@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22D68" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Accessory" representedClassName="Accessory" syncable="YES" codeGenerationType="class">
+        <attribute name="icon" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="on" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="powerWhenOn" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="consumption" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AccessoryConsumption" inverseName="accessory" inverseEntity="AccessoryConsumption"/>
+        <relationship name="scheduledPowerEvent" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ScheduledPowerEvent" inverseName="accessory" inverseEntity="ScheduledPowerEvent"/>
+    </entity>
+    <entity name="AccessoryConsumption" representedClassName="AccessoryConsumption" syncable="YES" codeGenerationType="class">
+        <attribute name="power" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="timestamp" attributeType="Date" usesScalarValueType="YES"/>
+        <relationship name="accessory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Accessory" inverseName="consumption" inverseEntity="Accessory"/>
+    </entity>
+    <entity name="BatteryCharge" representedClassName="BatteryCharge" syncable="YES" codeGenerationType="class">
+        <attribute name="charge" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="timestamp" attributeType="Date" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="GeneratorOutput" representedClassName="GeneratorOutput" syncable="YES" codeGenerationType="class">
+        <attribute name="power" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="timestamp" attributeType="Date" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="ScheduledPowerEvent" representedClassName="ScheduledPowerEvent" syncable="YES" codeGenerationType="class">
+        <attribute name="on" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="timestamp" attributeType="Date" usesScalarValueType="YES"/>
+        <relationship name="accessory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Accessory" inverseName="scheduledPowerEvent" inverseEntity="Accessory"/>
+    </entity>
+</model>
